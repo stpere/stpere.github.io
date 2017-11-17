@@ -41,21 +41,15 @@
 
 					$.ajaxSetup({async: false});
 					
-					var url = 'https://spreadsheets.google.com/feeds/list/2PACX-1vR9-2uhNEgOtYJ85dfE84CccoUbW9ExBilreR2PKZjc6A9HPfHIPxRKeNNO6CzH3SDUSwFj3GqbeyAw/od6/public/values?alt=json';
+					var url = "https://script.google.com/a/cegepgim.ca/macros/s/AKfycbzK0o4S3qPjKJyw9OQH5Qmfyr3-prXSoJ9diNKSrBKWZHH_xyU/exec";
+
 
 					jQuery.getJSON(url, function(data) {
-						console.log(data);
-
-/*						table = data.split("\n");
-						for (var i = 0; i < table.length; i++) {
-							table[i] = table[i].split("\t");
-						}
-					*/
-					$.ajaxSetup({async: true});
+						table = data;
+						$.ajaxSetup({async: true});
 					});
 
-					console.log(table);
-					newScoreGauche = table[table.length - 1][1];
+					newScoreGauche = table[1][0];
 					newScoreDroite = table[table.length - 1][4];
 
 					newNom1 = table[1][0].replace("é", "e").replace(" (", "<br>(");
