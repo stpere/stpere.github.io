@@ -45,9 +45,11 @@
 
 
 					jQuery.getJSON(url, function(data) {
+						console.log(data);
 						table = data;
 						$.ajaxSetup({async: true});
 					});
+					
 
 					newScoreGauche = table[1][0];
 					newScoreDroite = table[table.length - 1][4];
