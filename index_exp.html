@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	</head>
+	<style>
+               html {
+                  height: 100%;
+               }
+		@font-face {
+			font-family: Big;
+			src: url('gogobig.ttf');
+		}
+
+		@font-face {
+			font-family: Sanek;
+			src: url('sanek-regular-webfont.woff2');
+		}}
+
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		
+	</script>
+	<script type="text/javascript">
+		var scoreGauche = 0;
+		var scoreDroite = 0;
+		var newScoreGauche = 0;
+		var newScoreDroite = 0;
+		var penoGauche = 4;
+		var penoDroite = 4;
+		var newPenoGauche = 0;
+		var newPenoDroite = 0;
+
+                var newNom1 = "";
+                var newNom2 = "";
+                var nom1 = "";
+                var nom2 = "";
+				var table = Array();
+
+		window.setInterval(function() {
+
+					$.ajaxSetup({async: false});
+					
+					var url = 'https://spreadsheets.google.com/feeds/list/2PACX-1vR9-2uhNEgOtYJ85dfE84CccoUbW9ExBilreR2PKZjc6A9HPfHIPxRKeNNO6CzH3SDUSwFj3GqbeyAw/od6/public/values?alt=json';
+
+					jQuery.getJSON(url, function(data) {
+						console.log(data);
+
+/*						table = data.split("\n");
+						for (var i = 0; i < table.length; i++) {
+							table[i] = table[i].split("\t");
+						}
+					*/
+					$.ajaxSetup({async: true});
+					});
+
+					console.log(table);
+					newScoreGauche = table[table.length - 1][1];
+					newScoreDroite = table[table.length - 1][4];
+
+					newNom1 = table[1][0].replace("é", "e").replace(" (", "<br>(");
+					newNom2 = table[3][0].replace(/é/g, "e").replace(" (", "<br>(");
+
+					if (scoreGauche != newScoreGauche) {
+					        $("#gauche").fadeOut('slow', function() {
+				                        window.document.getElementById('gauche').innerHTML = newScoreGauche;
+							scoreGauche = newScoreGauche;
+							$("#eraseGauche").show();
+							$("#eraseGauche").hide();
+                        				$("#gauche").fadeIn();	
+                        			});
+					}
+					if (scoreDroite != newScoreDroite) {
+						console.log("change score droite");
+					        $("#droite").fadeOut('slow', function() {
+				                        window.document.getElementById('droite').innerHTML = newScoreDroite;
+							scoreDroite = newScoreDroite;
+							$("#eraseDroite").show();
+							$("#eraseDroite").hide();
+                        				$("#droite").fadeIn();	
+                        			});
+					}
+
+					if (penoGauche != newPenoGauche) {
+						while(penoGauche < newPenoGauche) {
+							$("#penoGauche"+penoGauche).fadeTo('slow', 1.0);
+							penoGauche++;
+						}
+						while (penoGauche > newPenoGauche) {
+							penoGauche--;
+							$("#penoGauche"+penoGauche).fadeTo('slow', 0.1);
+						}
+					}
+
+					if (penoDroite != newPenoDroite) {
+						while(penoDroite < newPenoDroite) {
+							$("#penoDroite"+penoDroite).fadeTo('slow', 1.0);
+							penoDroite++;
+						}
+						while (penoDroite > newPenoDroite) {
+							penoDroite--;
+							$("#penoDroite"+penoDroite).fadeTo('slow', 0.1);
+						}
+
+					}
+					
+
+					if (nom1!= newNom1) {
+                                            nom1 = newNom1;
+
+                                            window.document.getElementById('nom1').innerHTML = nom1;
+                                        }
+					if (nom2 != newNom2) {
+                                            nom2 = newNom2;
+                                            window.document.getElementById('nom2').innerHTML = nom2;
+                                        }
+		}, 3000);
+	
+		
+	</script>
+	<body style="overflow: hidden; background: url('gradient.png'); color: white; margin: 0px; padding: 0px; background-repeat: repeat-x;
+    background-attachment: fixed; height: 100%;">
+		<div style="text-align: center; margin-top: 0px">
+			<img src="logo_exp.png" />
+			
+		</div>
+		<div id="eraseGauche" style="display: none; position: absolute; top: 220px; left: 0px; width: 600px; height: 300px; background-color: 
+black"></div>
+		<div style="opacity: 0.9; z-index: 1; text-align: center; position: absolute; top: calc(100vh - 540px); left: 35px; width: 616px; color: 
+		black; font-family: Sanek;
+		font-size: 240px;" id="gauche">
+			0
+		</div>
+		
+		<div style="opacity: 0.95; color: #186a7a; font-family: Sanek; text-align: center; font-size: 80px; position: absolute; top: 500px; left: 50px; width: 490px" 
+id="nom1">Bleu Marin
+		</div>
+		<div style="position: absolute; top: 650px; left: 203px; width: 190px">
+			<img id="penoGauche0" class="penoDroite" src="boite.png" />
+			<img id="penoGauche1" class="penoDroite" src="boite.png" />
+			<img id="penoGauche2" class="penoDroite" src="boite.png" />
+		</div>
+		<div id="eraseDroite" style="display: none; position: absolute; top: 220px; right: 0px; width: 600px; height: 300px; background-color: 
+black"></div>
+
+		<div style="opacity: 0.9; z-index: 1; text-align: center; position: absolute; top: 220px; width: 616px; right: 35px; color: black; font-family: Sanek; font-size: 
+240px;" id="droite">
+			0
+		</div>
+
+                <div style="opacity: 0.95; color: #186a7a; font-family: Sanek; font-size: 80px; text-align: center; position: absolute; top: 500px; right: 50px; width: 490px" 
+id="nom2">Bleu Marin
+                </div>
+
+
+		<div style="position: absolute; top: 650px; right: 203px; width: 190px">
+
+		<img id="penoDroite0" class="penoDroite" src="boite.png" />
+		<img id="penoDroite1" class="penoDroite" src="boite.png" />
+		<img id="penoDroite2" class="penoDroite" src="boite.png" />
+		</div>
+		<img src="bas.png" style="position: absolute; z-index: -10; bottom: 0px; width: 100%">
+	</body>
+
+
+</html>
