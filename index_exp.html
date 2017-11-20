@@ -29,9 +29,14 @@
 	<script type="text/javascript">
 
 		var app = angular.module("tournoi", []);
-		app.controller('controlleur', function($scope) {
-			$scope.scoreGauche = 2;
-			$scope.scoreDroite = 1;
+		app.controller('controlleur', function($scope, $http) {
+
+
+			$http.get("https://script.google.com/a/cegepgim.ca/macros/s/AKfycbzK0o4S3qPjKJyw9OQH5Qmfyr3-prXSoJ9diNKSrBKWZHH_xyU/exec?plage=ecran").then(function(response) {
+				$scope.scoreGauche = response.data.scoreGauche;
+				$scope.scoreDroite = response.data.scoreDroite;
+			});
+			
 		});
 
 		var scoreGauche = 0;
