@@ -15,7 +15,15 @@
 		@font-face {
 			font-family: Sanek;
 			src: url('sanek-regular-webfont.woff2');
-		}}
+		}
+
+		.bloc {
+			display: inline-block;
+			width: 		64px;
+			height: 	64px;
+			border-radius: 	5px;
+			opacity: 	0.8;
+		}
 
 	</style>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -132,9 +140,9 @@ black"></div>
 id="nom1">Bleu Marin
 		</div>
 		<div style="position: absolute; top: 650px; left: 203px; width: 190px">
-			<img id="penoGauche0" class="penoDroite" src="boite.png" />
-			<img id="penoGauche1" class="penoDroite" src="boite.png" />
-			<img id="penoGauche2" class="penoDroite" src="boite.png" />
+			<div class="bloc" id="penoGauche0"></div>
+			<div class="bloc" id="penoGauche1"></div>
+			<div class="bloc" id="penoGauche2"></div>
 		</div>
 		<div id="eraseDroite" style="display: none; position: absolute; top: 220px; right: 0px; width: 600px; height: 300px; background-color: 
 black"></div>
@@ -150,10 +158,9 @@ id="nom2">Bleu Marin
 
 
 		<div style="position: absolute; top: 650px; right: 203px; width: 190px">
-
-		<img id="penoDroite0" class="penoDroite" src="boite.png" />
-		<img id="penoDroite1" class="penoDroite" src="boite.png" />
-		<img id="penoDroite2" class="penoDroite" src="boite.png" />
+			<div class="bloc" id="penoDroite0"></div>
+			<div class="bloc" id="penoDroite1"></div>
+			<div class="bloc" id="penoDroite2"></div>
 		</div>
 		<img src="bas.png" style="position: absolute; z-index: -10; bottom: 0px; width: 100%">
 	</body>
